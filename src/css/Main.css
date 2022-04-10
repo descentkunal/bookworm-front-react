@@ -1,0 +1,25 @@
+.viewlink:link, .viewlink:visited,  .viewlink:hover, .viewlink:active
+{
+    color: #000000;
+    text-decoration: none;
+}
+
+/* .custom-button {
+    height:2.5rem !important;
+} */
+
+.authorSpan {
+    margin-top: 0.2rem;
+    padding: none;
+    margin-bottom: 0.2rem;
+}
+
+/* .button-content {
+    height: 3rem;
+} */
+
+/* Toottip for MyShelf component */
+.myShelfTooltipButton {
+    background-color: white;
+    border: none;
+}

@@ -1,0 +1,51 @@
+.addToCartButton {
+    margin: 0.5rem !important;
+    border-radius: 10%, 10%, 10%, 10% !important;
+    background-color: #fca311 !important;
+    color: black !important;
+}
+
+.addToCartButton:hover {
+    background-color: #f88311 !important;
+}
+
+.buyNowButton {
+    margin: 0.5rem !important;
+    background-color: #fb8500 !important;
+}
+
+.buyNowButton:hover {
+    background-color: #fbff00 !important;
+    color: black !important;
+}
+
+.bookDescription {
+    text-align: justify;
+    height: 10rem;
+    overflow: hidden;
+    margin-bottom: 0%;
+}
+
+.bookDescription-expanded {
+    text-align: justify;
+    height: auto;
+    overflow: visible;
+    margin-bottom: 0%;
+}
+
+.expandLink {
+    color: #0d6efd;
+    text-decoration: underline;
+    margin-bottom: 1rem;
+    border: none;
+    background-color: white;
+}
+
+.shrinkLink {
+    color: #0d6efd;
+    text-decoration: underline;
+    margin-bottom: 1rem;
+    display: none;
+    border: none;
+    background-color: white;
+}
