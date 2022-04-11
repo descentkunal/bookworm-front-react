@@ -88,7 +88,7 @@ class MyShelf extends Component {
                         : <></>
                       }
                     </Card.Text>
-                    <a className="viewlink" target="_blank" rel="noreferrer" href={process.env.REACT_APP_BACKEND_EBOOK_URL + '/ebooks/' + ebook.bookId.pdfPath + '.pdf'}>
+                    <a className="viewlink" target="_blank" rel="noreferrer" href={process.env.REACT_APP_BACKEND_EBOOK_URL + '/ebooks/' + ebook.bookId.pdfPath}>
                       <div className="row button-content">
                         <Button className="col custom-button"  style={{marginTop: "5%"}} variant="secondary">View eBook</Button>
                       </div>
