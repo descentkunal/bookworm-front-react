@@ -22,7 +22,7 @@ const Upload = () => {
       "buy": buy,
     };
     
-    fetch(process.env.REACT_APP_BACKEND_URL + "/ebook/", {
+    fetch(process.env.REACT_APP_BACKEND_EBOOK_URL + "/ebook/", {
       method: "POST",
       headers: {
         "Content-Type": 'application/json'

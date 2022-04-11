@@ -22,7 +22,7 @@ class MyShelf extends Component {
       alert("Kindly login first.");
       return;
     }
-    this.fetchBooks(process.env.REACT_APP_BACKEND_URL + "/billing/fetchAllBooksByUserId?userId=" + userId);
+    this.fetchBooks(process.env.REACT_APP_BACKEND_EBOOK_URL + "/billing/fetchAllBooksByUserId?userId=" + userId);
   }
 
   onFilterTextChange(searchTextField) {
@@ -34,7 +34,7 @@ class MyShelf extends Component {
   }
 
   fetchBooksBasedOnSearch(searchText) {
-    let url = process.env.REACT_APP_BACKEND_URL + "/billing/";
+    let url = process.env.REACT_APP_BACKEND_EBOOK_URL + "/billing/";
     if (searchText !== "" && searchText !== undefined) {
       url += "search?searchText=" + searchText
     }
@@ -58,12 +58,10 @@ class MyShelf extends Component {
         this.setState({books: ebooks.map(ebook => (
           <div class="col" key={ebook.id} style={{ marginBottom:"3rem" }}>
             <Card style={{ width: '20rem' }}>
-              <a className="viewlink" target="_blank" rel="noreferrer" href={process.env.REACT_APP_BACKEND_URL + '/uploads/' + ebook.bookId.booktitle + '.pdf'}>
-                <Card.Img variant="top" width="100%" height="400px" src={process.env.REACT_APP_BACKEND_URL + "/" + ebook.bookId.img} />
+              <Card.Img variant="top" width="100%" height="400px" src={process.env.REACT_APP_BACKEND_EBOOK_URL + "/ebooks/" + ebook.bookId.imagePath} />
               
                 <Card.Body>
-                  <a className="viewlink" target="_blank" rel="noreferrer" href={process.env.REACT_APP_BACKEND_URL + '/uploads/' + ebook.bookId.booktitle + '.pdf'}>
-                    <Card.Title>{ebook.bookId.booktitle}</Card.Title>
+                   <Card.Title>{ebook.bookId.booktitle}</Card.Title>
                     <Card.Text>
                       <span className="authorSpan">&ensp;by <em>{ebook.bookId.author}</em></span><br/>
                       {
@@ -90,12 +88,12 @@ class MyShelf extends Component {
                         : <></>
                       }
                     </Card.Text>
-                  </a>
-                  <div className="row button-content">
-                    <Button className="col custom-button"  style={{marginTop: "5%"}} variant="secondary">View eBook</Button>
-                  </div>
+                    <a className="viewlink" target="_blank" rel="noreferrer" href={process.env.REACT_APP_BACKEND_EBOOK_URL + '/ebooks/' + ebook.bookId.pdfPath + '.pdf'}>
+                      <div className="row button-content">
+                        <Button className="col custom-button"  style={{marginTop: "5%"}} variant="secondary">View eBook</Button>
+                      </div>
+                    </a>
                 </Card.Body>
-                </a>
             </Card>
           </div>
         ))})

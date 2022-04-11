@@ -30,7 +30,7 @@ const Signup = () => {
       alert("Passowrd does not match");
       return
     }
-    fetch("http://localhost:5000/user/signup", {
+    fetch(process.env.REACT_APP_BACKEND_USER_URL + "/user/signup", {
       method: "POST",
       headers: {
         "Content-Type": 'application/json'

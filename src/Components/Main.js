@@ -26,7 +26,7 @@ class Main extends Component {
     let userId = localStorage.getItem('userId')
     if (userId)
       uri = '/ebooks/fetchBooks?userId=' + userId 
-    this.fetchBooks(process.env.REACT_APP_BACKEND_URL + uri);
+    this.fetchBooks(process.env.REACT_APP_BACKEND_EBOOK_URL + uri);
   }
 
   onFilterTextChange(searchTextField) {
@@ -38,7 +38,7 @@ class Main extends Component {
   }
 
   fetchBooksBasedOnSearch(searchText) {
-    let url = process.env.REACT_APP_BACKEND_URL + "/ebooks/";
+    let url = process.env.REACT_APP_BACKEND_EBOOK_URL + "/ebooks/";
     if (searchText !== "" && searchText !== undefined) {
       url += "search?searchText=" + searchText
     }
@@ -51,7 +51,7 @@ class Main extends Component {
       alert("Kindly login first.");
     } else {
       console.log('buying')
-      fetch(process.env.REACT_APP_BACKEND_URL + '/billing/buy', {
+      fetch(process.env.REACT_APP_BACKEND_EBOOK_URL + '/billing/buy', {
         method: 'POST',
         headers: {
           "Content-Type": 'application/json'
@@ -108,11 +108,15 @@ class Main extends Component {
       alert("Kindly login first.");
     } else {
       let numberOfDays = parseInt(this.state.rentDuration)
+      if (numberOfDays !== undefined && numberOfDays > 45) {
+        alert("Rent Duration should not be greater than 45");
+        return
+      }
       let startDate = new Date();
       let endDate = new Date();
       endDate.setDate(endDate.getDate() + numberOfDays);
       console.log(startDate, endDate, numberOfDays)
-      fetch(process.env.REACT_APP_BACKEND_URL + '/rent', {
+      fetch(process.env.REACT_APP_BACKEND_EBOOK_URL + '/rent', {
         method: 'POST',
         headers: {
           "Content-Type": 'application/json'
@@ -127,7 +131,7 @@ class Main extends Component {
       }).then(rentObj => rentObj.json())
       .then((rentObj) => {
         if (rentObj !== undefined && rentObj !== null &&  (rentObj.error === undefined || rentObj.error === null)) {
-          fetch(process.env.REACT_APP_BACKEND_URL + '/billing/addBookToBilling', {
+          fetch(process.env.REACT_APP_BACKEND_EBOOK_URL + '/billing/addBookToBilling', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json'
@@ -149,7 +153,7 @@ class Main extends Component {
           })
           .catch((err) => {
             console.log('error: ', err)
-            fetch(process.env.REACT_APP_BACKEND_URL + '/rent?rentId='+rentObj.id, {
+            fetch(process.env.REACT_APP_BACKEND_EBOOK_URL + '/rent?rentId='+rentObj.id, {
               method: 'DELETE'
             })
             alert('Failed to rent this ebook');
@@ -214,7 +218,7 @@ class Main extends Component {
         payload.rentDuration = parseInt(this.state.rentDuration)
         this.setState({showRentModalForCart: false});
       }
-      fetch(process.env.REACT_APP_BACKEND_URL + '/cart/',{
+      fetch(process.env.REACT_APP_BACKEND_EBOOK_URL + '/cart/',{
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -248,7 +252,7 @@ class Main extends Component {
           <div className="col" key={ebook.id} style={{ marginBottom:"3rem" }}>
             <Card style={{ width: '20rem' }}>
               <a className="viewlink" href={"/view/" + ebook.id}>
-                <Card.Img variant="top" width="100%" height="400px" src={process.env.REACT_APP_BACKEND_URL + "/" + ebook.img} />
+                <Card.Img variant="top" width="100%" height="400px" src={process.env.REACT_APP_BACKEND_EBOOK_URL + "/ebooks/" + ebook.image} />
               </a>
                 <Card.Body>
                   <a className="viewlink" href={"/view/" + ebook.id}>
@@ -270,7 +274,7 @@ class Main extends Component {
                       : <></>
                     }
                     <Button className="col custom-button" onClick={this.showCartModal.bind(this, ebook.id, ebook.price, ebook.actions)} style={{marginTop: "5%"}} variant="secondary">+ Cart</Button>
-                    {/* <a target="_blank" rel="noreferrer" href={process.env.REACT_APP_BACKEND_URL + '/uploads/' + ebook.booktitle + '.pdf'}><Button>View Book</Button></a> */}
+                    {/* <a target="_blank" rel="noreferrer" href={process.env.REACT_APP_BACKEND_EBOOK_URL + '/uploads/' + ebook.booktitle + '.pdf'}><Button>View Book</Button></a> */}
                   </div>
                 </Card.Body>
             </Card>

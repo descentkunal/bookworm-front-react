@@ -15,7 +15,7 @@ const Signin = () => {
       "emailId": email,
       "password": password,
     };
-    fetch("http://localhost:5000/user/signin", {
+    fetch(process.env.REACT_APP_BACKEND_USER_URL + "/user/signin", {
       method: "POST",
       headers: {
         "Content-Type": 'application/json'

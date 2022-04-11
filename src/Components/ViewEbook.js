@@ -10,7 +10,7 @@ function ViewEbook(props) {
     const {id} = useParams();
 
     useEffect(() => {
-        fetch(process.env.REACT_APP_BACKEND_URL + "/ebooks/view?id=" + id)
+        fetch(process.env.REACT_APP_BACKEND_EBOOK_URL + "/ebooks/view?id=" + id)
         .then(data=> 
           data.json()
         ).then(
@@ -45,7 +45,7 @@ function ViewEbook(props) {
                 <div>{book.category} / {book.subcategory}</div>
                 <br/><br/>
                 <div className="col-3" style={{'alignItems': 'center'}}>
-                    <img className="img img-responsive" width="100%" height="400px" src={process.env.REACT_APP_BACKEND_URL+ '/' + book.img} alt="Not available"/>
+                    <img className="img img-responsive" width="100%" height="400px" src={process.env.REACT_APP_BACKEND_EBOOK_URL+ '/' + book.img} alt="Not available"/>
                 </div>
                 <div className='col-6'>
                     <h2>{book.booktitle}</h2>

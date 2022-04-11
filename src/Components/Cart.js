@@ -13,7 +13,7 @@ const Cart = () => {
   let history = useNavigate();
 
   function RemoveBook(cartId) {
-    fetch(process.env.REACT_APP_BACKEND_URL + "/cart/deleteBookFromCart?cartId=" + cartId,{ method: 'DELETE' })
+    fetch(process.env.REACT_APP_BACKEND_EBOOK_URL + "/cart/deleteBookFromCart?cartId=" + cartId,{ method: 'DELETE' })
     .then(data=> 
       data.json()
     ).then((data)=>{
@@ -23,7 +23,7 @@ const Cart = () => {
   }
 
    function fetchData() {
-    fetch(process.env.REACT_APP_BACKEND_URL + "/cart/fetchAllItemsByUserId?userId=" + 
+    fetch(process.env.REACT_APP_BACKEND_EBOOK_URL + "/cart/fetchAllItemsByUserId?userId=" + 
     (localStorage.getItem('userId') || ''))
     .then(data=> 
       data.json()
@@ -67,7 +67,7 @@ const Cart = () => {
     }
     //buy and rent books
     book.forEach((info)=> {
-      let url = process.env.REACT_APP_BACKEND_URL;
+      let url = process.env.REACT_APP_BACKEND_EBOOK_URL;
       info.bookId = info.bookId.id
       if (info.action === 'buy') {
         url = url + '/billing/buy'
@@ -89,7 +89,7 @@ const Cart = () => {
       .then((res) => {
         if (info.action === 'rent'){
           info.rentId = res.id
-          fetch(process.env.REACT_APP_BACKEND_URL + '/billing/addBookToBilling', {
+          fetch(process.env.REACT_APP_BACKEND_EBOOK_URL + '/billing/addBookToBilling', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json'
@@ -101,7 +101,7 @@ const Cart = () => {
             console.log('success: ', billing)
           }).catch((err) => {
             console.log('error: ', err)
-            fetch(process.env.REACT_APP_BACKEND_URL + '/rent?rentId='+res.id, {
+            fetch(process.env.REACT_APP_BACKEND_EBOOK_URL + '/rent?rentId='+res.id, {
               method: 'DELETE'
             })
           });
@@ -118,7 +118,7 @@ const Cart = () => {
 
   const clearCart = () => {
     let userId = localStorage.getItem('userId');
-      fetch(process.env.REACT_APP_BACKEND_URL + "/cart/clearCart?userId="+ userId,{ method: 'DELETE' })
+      fetch(process.env.REACT_APP_BACKEND_EBOOK_URL + "/cart/clearCart?userId="+ userId,{ method: 'DELETE' })
       .then(data=> 
         data.json()
       ).then((data)=>{
@@ -144,7 +144,7 @@ const Cart = () => {
                     <Card.Body>
                       <div className="d-flex">
                         <img
-                          src={process.env.REACT_APP_BACKEND_URL + "/" + info.bookId.img} 
+                          src={process.env.REACT_APP_BACKEND_EBOOK_URL + "/" + info.bookId.img} 
                           height={"120rem"}
                           width={"100rem"} alt="NA" />
                         <div

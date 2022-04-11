@@ -13,7 +13,7 @@ function PurchaseHistory(props) {
     
     const fetchBillingInfo = async () => {
         // localStorage.setItem('userId', '6247e52dc7bdf6b72fb1dcb0')
-        let response = await fetch(process.env.REACT_APP_BACKEND_URL + '/billing/fetchAllBooksByUserId?userId=' 
+        let response = await fetch(process.env.REACT_APP_BACKEND_EBOOK_URL + '/billing/fetchAllBooksByUserId?userId=' 
         + (localStorage.getItem('userId') || ''))
         response.json()
             .then( res => setBillingInfo(res));
@@ -82,7 +82,7 @@ function PurchaseHistory(props) {
                             <Card.Body>
                                 <div className='row'>
                                 <div className='col-2'>
-                                    <img width="100%" height="200px" src={process.env.REACT_APP_BACKEND_URL + "/" + info.bookId.img} alt="NA"/>
+                                    <img width="100%" height="200px" src={process.env.REACT_APP_BACKEND_EBOOK_URL + "/" + info.bookId.img} alt="NA"/>
                                 </div>
                                 <div className='col-10'>
                                     <Card.Title>{info.bookId.booktitle}</Card.Title>

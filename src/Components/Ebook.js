@@ -23,7 +23,7 @@ class Ebook extends Component {
   }
 
   componentDidMount() {
-    this.fetchBooks(process.env.REACT_APP_BACKEND_URL + "/ebooks/");
+    this.fetchBooks(process.env.REACT_APP_BACKEND_EBOOK_URL + "/ebooks/");
   }
 
   onFilterTextChange(searchTextField) {
@@ -35,7 +35,7 @@ class Ebook extends Component {
   }
 
   fetchBooksBasedOnSearch(searchText) {
-    let url = process.env.REACT_APP_BACKEND_URL + "/ebooks/";
+    let url = process.env.REACT_APP_BACKEND_EBOOK_URL + "/ebooks/";
     if (searchText !== "" && searchText !== undefined) {
       url += "search?searchText=" + searchText
     }
@@ -47,7 +47,7 @@ class Ebook extends Component {
     if (userId == null) {
       alert("Kindly login first.");
     } else {
-      fetch(process.env.REACT_APP_BACKEND_URL + '/billing/buy', {
+      fetch(process.env.REACT_APP_BACKEND_EBOOK_URL + '/billing/buy', {
         method: 'POST',
         headers: {
           "Content-Type": 'application/json'
@@ -123,7 +123,7 @@ class Ebook extends Component {
         payload.rentDuration = parseInt(this.state.rentDuration)
         this.setState({showRentModalForCart: false});
       }
-      fetch(process.env.REACT_APP_BACKEND_URL + '/cart/',{
+      fetch(process.env.REACT_APP_BACKEND_EBOOK_URL + '/cart/',{
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -156,7 +156,7 @@ class Ebook extends Component {
           <div class="col" key={ebook.id} style={{ marginBottom:"3rem" }}>
             <Card style={{ width: '20rem' }}>
             <a className="viewlink" href={"/view/" + ebook.id}>
-                <Card.Img variant="top" width="100%" height="200px" src={process.env.REACT_APP_BACKEND_URL + "/" + ebook.img} />
+                <Card.Img variant="top" width="100%" height="200px" src={process.env.REACT_APP_BACKEND_EBOOK_URL + "/ebooks/" + ebook.image} />
               </a>
                 <Card.Body>
                   <a className="viewlink" href={"/view/" + ebook.id}>

@@ -9,7 +9,7 @@ function ViewProfile(props) {
   console.log(id)
 
     useEffect(() => {
-        fetch(process.env.REACT_APP_BACKEND_URL + "/user/view?id=" + id)
+        fetch(process.env.REACT_APP_BACKEND_USER_URL + "/user/view?id=" + id)
         .then(data=> 
           data.json()
         ).then(

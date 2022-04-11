@@ -32,7 +32,7 @@ class Lendinglibrary extends Component {
     let userId = localStorage.getItem('userId')
     if (userId)
       url = '/ebooks/fetchBooks?userId=' + userId 
-    fetch(process.env.REACT_APP_BACKEND_URL + url)
+    fetch(process.env.REACT_APP_BACKEND_EBOOK_URL + url)
         .then(res => res.json())
         .then((result) => { this.setState({ebooks: 
           result.filter((val) => {
@@ -52,7 +52,7 @@ class Lendinglibrary extends Component {
           <div className="col" key={ebook.id}>
             <Card style={{ width: '18rem' }}>
               <a className="viewlink" href={"/view/" + ebook.id}>
-                <Card.Img variant="top" width="100%" height="400px" src={process.env.REACT_APP_BACKEND_URL + "/" + ebook.img} />
+                <Card.Img variant="top" width="100%" height="400px" src={process.env.REACT_APP_BACKEND_EBOOK_URL + "/ebooks/" + ebook.image} />
               </a>
               <Card.Body>
                 <a className="viewlink" href={"/view/" + ebook.id}>
@@ -89,7 +89,7 @@ class Lendinglibrary extends Component {
     if (userId == null) {
       alert("Kindly login first.");
     } else {
-      fetch(process.env.REACT_APP_BACKEND_URL + "/package/fetchByUserId?userId=" + userId)
+      fetch(process.env.REACT_APP_BACKEND_EBOOK_URL + "/package/fetchByUserId?userId=" + userId)
           .then(res => res.json())
           .then((pkgs) => {
             this.setState({showPackageModal:true,
@@ -120,7 +120,7 @@ class Lendinglibrary extends Component {
     pkg.bookId = this.state.selectedBook
     pkg.noOfBooks -= 1
     pkg.userId = localStorage.getItem('userId');
-    fetch(process.env.REACT_APP_BACKEND_URL + "/package/", {
+    fetch(process.env.REACT_APP_BACKEND_EBOOK_URL + "/package/", {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -158,7 +158,7 @@ class Lendinglibrary extends Component {
     }
     console.log('lend', lendObject)
     this.setState({showPackageModal: false});
-    fetch(process.env.REACT_APP_BACKEND_URL + "/lend/lendBookAndUpdatePackage", {
+    fetch(process.env.REACT_APP_BACKEND_EBOOK_URL + "/lend/lendBookAndUpdatePackage", {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'

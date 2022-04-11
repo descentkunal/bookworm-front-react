@@ -17,7 +17,7 @@ export function AdminViewEbook(props) {
 
     function RemoveBook(id) {
         console.log(id);
-        fetch(process.env.REACT_APP_BACKEND_URL + "/ebooks/?id=" + id,
+        fetch(process.env.REACT_APP_BACKEND_EBOOK_URL + "/ebooks/?id=" + id,
             { method: 'DELETE' })
       .then(data=> 
         data.json()
@@ -38,7 +38,7 @@ return (
         <div class="col">
     <Card style={{ width: '18rem' }}>
     <a className="viewlink" href={"/view/" + ebook.id}>
-                <Card.Img variant="top" width="100%" height="200px" src={process.env.REACT_APP_BACKEND_URL + "/" + ebook.img} />
+                <Card.Img variant="top" width="100%" height="200px" src={process.env.REACT_APP_BACKEND_EBOOK_URL + "/ebooks/" + ebook.image} />
               </a>
   <Card.Body>
 
